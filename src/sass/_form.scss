@@ -1,0 +1,17 @@
+@import './vars';
+
+.form {
+  background-color: var(--blue);
+  padding: 8px;
+  &__input {
+    width: 300px;
+    outline: none;
+    border: none;
+    padding: 5px;
+    font-size: 10px;
+  }
+  &__button {
+    color: var(--text);
+    background-color: white;
+  }
+}

@@ -3,19 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
+    <title>search foto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
+
+    <script type="module" src="./main.js"></script>
   </head>
   <body>
-    <form class="search-form" id="search-form">
-      <input
-        type="text"
-        name="searchQuery"
-        autocomplete="off"
-        placeholder="Search images..."
-      />
-      <button type="submit">Search</button>
-    </form>
+    <div class="container">
+      <div class="form display">
+        <form class="search-form" id="search-form">
+          <input
+            class="form__input"
+            type="text"
+            name="searchQuery"
+            autocomplete="off"
+            placeholder="Search images..."
+          />
+          <button class="form__button" type="submit">Search</button>
+        </form>
+      </div>
+      <div class="gallery display">
+        <!-- Obraz karty -->
+      </div>
+
+      <div class="display load">
+        <button class="button" type="button" class="load-more">
+          Load more
+        </button>
+      </div>
+    </div>
   </body>
 </html>
