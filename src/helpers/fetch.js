@@ -1,60 +1,43 @@
+import { BASIC_URL, DEFAULT_PIXABY_PARAMS } from './configApi';
 import axios from 'axios';
+import createGallery from './createElements';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-//   const API_PATH = 'http://localhost:3000';
+const options = {};
 
-// function pingUrl({
-//   url,
-//   queryParams,
-//   method,
-//   body,
-//   headers = {
-//     'Content-Type': 'application/json',
-//   },
-// }) {
-//   return new Promise((resolve, reject) => {
-//     const querystring = new URLSearchParams(queryParams);
-//     fetch(`${url}?${querystring}`, { method, body, headers })
-//       .then((response) => {
-//         if (!response.ok) {
-//           reject(`Error code ${response.status}`);
-//         }
-//         if (response.status === 204) {
-//           return {};
-//         }
-//         return response.json();
-//       })
-//       .then((data) => {
-//         resolve(data);
-//       })
-//       .catch((err) => {
-//         reject(err);
-//       });
-//   });
-// }
+export async function fetchUrl({ q }) {
+  try {
+    const searchParams = new URLSearchParams({
+      ...DEFAULT_PIXABY_PARAMS,
+      q,
+    });
+    const url = `${BASIC_URL}?${searchParams.toString()}`;
+    const response = await fetchAxios(url, options);
+    const photos = response.hits;
+    return photos;
+  } catch (e) {
+    return { error: e.toString() };
+  }
+}
 
-// export const bookAPI = {
-//   get: () => pingUrl({ url: `${API_PATH}/books` }),
-//   post: (bookData) =>
-//     pingUrl({
-//       url: `${API_PATH}/books`,
-//       method: 'POST',
-//       body: JSON.stringify(bookData),
-//     }),
-//   put: (bookId, bookData) =>
-//     pingUrl({
-//       url: `${API_PATH}/books/${bookId}`,
-//       method: 'PUT',
-//       body: JSON.stringify(bookData),
-//     }),
-//   patch: (bookId, bookData) =>
-//     pingUrl({
-//       url: `${API_PATH}/books/${bookId}`,
-//       method: 'PATCH',
-//       body: JSON.stringify(bookData),
-//     }),
-//   delete: (bookId) =>
-//     pingUrl({
-//       url: `${API_PATH}/books/${bookId}`,
-//       method: 'DELETE',
-//     }),
-// };
+function fetchAxios(url, options) {
+  return axios
+    .get(url, options)
+    .then(response => {
+      return response.data;
+    })
+    .catch(e => {
+      Notify.failure('Oops! Something went wrong! Try reloading the page!');
+    });
+}
+
+export async function loadPhotosAndData({ q }) {
+  const photos = await fetchUrl({ q });
+
+  if (photos.error) {
+    Notify.failure('Oops! Something went wrong! Try reloading the page!');
+    return;
+  }
+
+  await createGallery(photos);
+}
