@@ -1,11 +1,14 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import gallery from '../main';
 
-export function createGallery(photos) {
-  const gallery = document.querySelector('.gallery');
+export function createGallery({ photos, page }) {
+  if (page === '1') {
+    gallery.innerHTML = '';
+  }
   const markup = photos
     .map(photo => {
-      `<div class="photo-card">
+      return `<div class="photo-card">
   <a class= "gallery-link" href="${photo.largeImageURL}">
      <img src="${photo.webformatURL}" alt="${photo.tags}" loading="lazy" /> </a>
      <div class="info">
@@ -25,7 +28,7 @@ export function createGallery(photos) {
    </div>`;
     })
     .join('');
-  gallery.innerHTML = markup;
-  gallery.append;
+
+  gallery.innerHTML += markup;
   const lightbox = new SimpleLightbox('.gallery a');
 }

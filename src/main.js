@@ -1,11 +1,9 @@
-// import {fetchAndCreateImageList, scrollHandler} from './helpers/handlers'
-
 import { fetchAndCreateImageList } from './helpers/handlers';
+import { scrollHandler } from './helpers/handlers';
+export const searchForm = document.querySelector('#search-form');
+export default gallery = document.querySelector('.gallery');
 
-form = document.querySelector('#search-form');
+searchForm.addEventListener('submit', fetchAndCreateImageList);
 
-form.addEventListener('submit', fetchAndCreateImageList);
-// form.dispatchEvent(new Event('submit'));
-
-// scrollHandler();
-// window.addEventListener('scroll', scrollHandler);
+scrollHandler();
+window.addEventListener('scroll', scrollHandler);

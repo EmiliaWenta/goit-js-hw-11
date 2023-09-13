@@ -19,25 +19,19 @@
     <div class="container">
       <div class="form display">
         <form class="search-form" id="search-form">
+          <input hidden name="page" type="number" value="1" />
           <input
             class="form__input"
             type="text"
             name="searchQuery"
             autocomplete="off"
             placeholder="Search images..."
+            value=""
           />
           <button class="form__button" type="submit">Search</button>
         </form>
       </div>
-      <div class="gallery display">
-        <!-- Obraz karty -->
-      </div>
-
-      <div class="display load">
-        <button class="button" type="button" class="load-more">
-          Load more
-        </button>
-      </div>
+      <div class="gallery display"></div>
     </div>
   </body>
 </html>
