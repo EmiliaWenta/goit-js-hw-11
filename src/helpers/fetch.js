@@ -14,9 +14,12 @@ export async function fetchUrl({ q = '', page = '1' }) {
   const url = `${BASIC_URL}?${searchParams.toString()}`;
   const response = await fetchAxios(url, options);
   const photos = response.hits;
+
   if (page === '1') {
     const totalHits = response.total;
-    Notify.success(`Hooray! We found ${totalHits} images.`);
+    if (totalHits > 0) {
+      Notify.success(`Hooray! We found ${totalHits} images.`);
+    }
   }
   if (photos.length === 0) {
     Notify.failure(
@@ -33,7 +36,14 @@ function fetchAxios(url, options) {
       return response.data;
     })
     .catch(e => {
+      if (e.response) {
+        Notify.failure(
+          "We're sorry, but you've reached the end of search results."
+        );
+        return;
+      }
       Notify.failure('Oops! Something went wrong! Try reloading the page!');
+      return;
     });
 }
 

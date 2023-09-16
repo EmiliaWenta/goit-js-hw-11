@@ -1,6 +1,6 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import gallery from '../main';
+import { gallery } from '../main';
 
 export function createGallery({ photos, page }) {
   if (page === '1') {
