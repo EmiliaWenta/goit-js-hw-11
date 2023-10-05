@@ -2,16 +2,66 @@
 
 .form {
   background-color: var(--blue);
-  padding: 8px;
+  padding: 14px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 40px;
+    gap: 0px;
+  }
+
   &__input {
-    width: 300px;
+    width: 200px;
     outline: none;
-    border: none;
-    padding: 5px;
-    font-size: 10px;
+    background-color: var(--blue);
+    border: 1px solid white;
+    border-radius: 4px;
+    padding: 8px;
   }
   &__button {
-    color: var(--text);
-    background-color: white;
+    padding-top: 5.5px;
+    padding-left: 5.5px;
+    padding-right: 5.5px;
+    padding-bottom: 4.5px;
+    position: relative;
+    left: -33px;
+    color: var(--white);
+    background-color: var(--blue);
+    border: 1px solid white;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+  }
+  &__icon {
+    fill: var(--white);
+  }
+}
+
+input[placeholder='Search images...'] {
+  color: var(--white);
+  font-size: 15px;
+}
+
+input::placeholder {
+  color: var(--white);
+}
+
+@media screen and (min-width: 480px) {
+  .form__input {
+    width: 400px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .form__input {
+    width: 600px;
   }
 }

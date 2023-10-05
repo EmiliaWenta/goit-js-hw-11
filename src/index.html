@@ -17,21 +17,39 @@
   </head>
   <body>
     <div class="container">
-      <div class="form display">
-        <form class="search-form" id="search-form">
-          <input hidden name="page" type="number" value="1" />
-          <input
-            class="form__input"
-            type="text"
-            name="searchQuery"
-            autocomplete="off"
-            placeholder="Search images..."
-            value=""
-          />
-          <button class="form__button" type="submit">Search</button>
+      <div class="form display" id="form">
+        <form class="form__item" id="searchForm">
+          <label>
+            <input hidden name="page" type="number" value="1" />
+          </label>
+          <label>
+            <input
+              class="form__input"
+              type="text"
+              name="searchQuery"
+              autocomplete="off"
+              placeholder="Search images..."
+              value=""
+            />
+          </label>
+          <button class="form__button" type="submit">
+            <svg class="form__icon" width="20" height="20">
+              <use href="./images/icons.svg#icon-search"></use>
+            </svg>
+          </button>
         </form>
       </div>
-      <div class="gallery display"></div>
+
+      <div class="gallery display" id="gallery">
+        <span class="loader"></span>
+      </div>
+      <div class="gallery__back display">
+        <a href="#gallery">
+          <svg class="gallery__backIcon" width="25" height="25">
+            <use href="./images/icons.svg#icon-arrow-up2"></use>
+          </svg>
+        </a>
+      </div>
     </div>
   </body>
 </html>
