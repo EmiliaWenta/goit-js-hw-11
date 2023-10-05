@@ -35,6 +35,7 @@ export async function fetchUrl({ q = '', page = '1' }) {
   return photos;
 }
 
+// only fetching url to get response for easier catching error
 function fetchAxios(url, options) {
   return axios
     .get(url, options)
@@ -54,8 +55,8 @@ function fetchAxios(url, options) {
     });
 }
 
+// create abstraction
 export async function loadPhotosAndData({ q, page }) {
- 
   const photos = await fetchUrl({ q, page });
   createGallery({ photos, page });
   showBackIcon();

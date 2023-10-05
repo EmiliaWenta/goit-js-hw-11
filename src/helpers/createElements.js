@@ -3,7 +3,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import { hideLoader } from './loader';
 
 const gallery = document.querySelector('.gallery');
-
+// creating gallery using the map and join methods because it is more readable and faster compared to creating elements using document.createelement("") + append.
 export function createGallery({ photos, page }) {
   if (page === '1') {
     gallery.innerHTML = '';
