@@ -57,7 +57,16 @@ function fetchAxios(url, options) {
 
 // create abstraction
 export async function loadPhotosAndData({ q, page }) {
+  const savedQuery = localStorage.getItem('savedQuery');
+  if ((q === savedQuery) & (page == 1)) {
+    Notify.failure(
+      `We're sorry, but result for ${q} have alredy been found, try finding something else`
+    );
+    return;
+  }
+
   const photos = await fetchUrl({ q, page });
+  localStorage.setItem('savedQuery', q);
   createGallery({ photos, page });
   showBackIcon();
   return;
