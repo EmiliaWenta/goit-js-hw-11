@@ -11,7 +11,11 @@ function checkedSelectedOptions() {
       const selected = selectOptions[i].value;
       if (selected === 'button') {
         loadMoreButton.classList.add('visible');
-      } else window.addEventListener('scroll', scrollHandler);
+        window.removeEventListener('scroll', scrollHandler);
+      } else {
+        window.addEventListener('scroll', scrollHandler);
+        loadMoreButton.classList.remove('visible');
+      }
     }
   }
 }
